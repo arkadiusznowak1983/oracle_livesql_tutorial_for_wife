@@ -1,0 +1,62 @@
+<h2><b>COUNT</b> - liczenie ilości wierszy lub wystąpień w kolumnie</h2><br />
+<ul>
+<h3>Do zliczania ilości wierszy służy funkcja COUNT, którą wstawiamy w sekcji SELECT</h3>
+<code>SELECT COUNT(1) FROM employees;</code>
+<br />
+<h3>Istnieją trzy podstawowe sposoby liczenia</h3>
+- liczenie wszystkich zwróconych wierszy, czyli SELECT COUNT(1)
+<code>SELECT COUNT(1) FROM employees;</code>
+- liczenie wszystkich zwróconych wierszy gdzie kolumna jest uzupełniona, czyli SELECT COUNT(kolumna)<br />
+Poniższe zapytanie zwróci ilość pracowników posiadających przełożonego, czyli wszyscy oprócz prezesa.
+<code>SELECT COUNT(manager_id) FROM employees;</code>
+- liczenie wszystkich unikalnych wartości w kolumnie, czyli SELECT COUNT(DISTINCT kolumna)<br />
+Poniższe zapytanie zwróci ilość unikalnych imion pracowników.
+<code>SELECT COUNT(DISTINCT FIRST_NAME) FROM employees;</code>
+<br />
+<h3>Filtrowanie - sekcja WHERE</h3>
+Do każdego z powyższych można zastosować filtrowanie za pomocą sekcji <b>WHERE kolumna = ???</b><br />
+Poniższe zapytanie wyświetla ilość programistów.
+<code>SELECT COUNT(1) FROM employees WHERE JOB_ID = 'IT_PROG';</code>
+<br />
+<br />
+<h3>Przykłady użycia funkcji COUNT</h3>
+<li>
+a) <strong>Zwróć ilość pracowników zarabiających więcej niż 5000</strong>
+Co wiemy?<br />
+<font style="padding-left:10px;">- nie interesują nas kolumny opisujące pracownika tylko ile tych pracowników (czytaj wierszy) jest, czyli SELECT COUNT(1)</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- wyświetlamy tylko tych z zarobkami (kolumna salary) większymi niż 5000, czyli dodajemy WHERE SALARY > 5000</font><br />
+Nasze zapytanie będzie się więc składać z:<br />
+<font style="padding-left:10px;">- SELECT COUNT(1) FROM employees</font><br />
+<font style="padding-left:10px;">- WHERE SALARY > 5000</font><br />
+<code>SELECT COUNT(1) FROM employees WHERE SALARY > 5000;</code>
+<br />
+</li>
+</ul>
+
+<li>
+b) <strong>Ile jest uniklanych stanowisk w departamencie o DEPARTMENT_ID = 100</strong>
+Co wiemy?<br />
+<font style="padding-left:10px;">- nie interesują nas kolumny opisujące pracownika tylko ile jest unikalnych stanowisk (kolumna JOB_ID), czyli SELECT COUNT(DISTINCT JOB_ID)</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- liczymy tylko tych z z departamentu 100 (kolumna DEPARTMENT_ID), czyli dodajemy WHERE DEPARTMENT_ID = 100</font><br />
+Nasze zapytanie będzie się więc składać z:<br />
+<font style="padding-left:10px;">- SELECT COUNT(DISTINCT JOB_ID) FROM employees</font><br />
+<font style="padding-left:10px;">- WHERE DEPARTMENT_ID = 100</font><br />
+<code>SELECT COUNT(DISTINCT JOB_ID) FROM employees WHERE DEPARTMENT_ID = 100;</code>
+<br />
+</li>
+</ul>
+
+
+<ul>
+<strong>Ćwiczenie</strong>
+<li>
+<strong>- Ile jest unikalnych nazwisk w firmie ?</strong>
+</li>
+<li>
+<strong>- Ilu bezpośrednich podwładnych ma prezes jeżeli jego ID to 100 ?</strong><br />
+Podpowiedź: policz ilość wierszy gdzie MANAGER_ID = 100
+</li>
+</ul>
+<br />

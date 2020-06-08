@@ -1,0 +1,91 @@
+<h4>Testy wykonujemy na tabeli employyes</h3>
+<code>SELECT * FROM employees</code>
+ps. jeżeli wydzisz komunikat o braku tabeli kliknij przycisk "Execute Prerequisite SQL" znajdujący się powyżej.<br />
+
+<h4>Funkcje użyte w tym tutorialu</h4>
+<h3><b>COUNT(1)</b> - ilość wierszy</h3>
+<h3><b>COUNT(kolumna)</b> - ilość wierszy gdzie kolumna nie jest pusta</h3>
+<h3><b>COUNT(DISTINCT)</b> - ilość unikalnych wartości w kolumnie</h3>
+<h3><b>SUM(kolumna)</b> - suma wartości z kolumny</h3>
+<h3><b>MAX(kolumna)</b> - maksymalna wartość z kolumny</h3>
+<h3><b>MIN(kolumna)</b> - minimalna wartość komulny</h3>
+<h3><b>AVG(kolumna)</b> - średnia wartość w kolumnie</h3>
+
+<h4>Komendy SQL</h4>
+<h3>GROUP BY</h3>
+<h3>Instrukcji GROUP BY używamy gdy chcemy dokonać analizy nie na całym zbiorze, ale na podzbiorach z danymi.<br />
+Podzbiór definiujemy wskazując kolumnę (lub kolumny), które go definiują.<br />
+Najprostszym przykładem podzbioru jest podział ze względu na płeć.<br >
+Utworzą się wtedy dwa podzbiory, dla kobiet i dla mężczyzn i dla każdego z osobna zostaną wykonane funkcje analityczne.<br />
+Ogólny wzór na grupowanie wygląda następująco:<br />
+</h3>
+<div style="background: #F0F0F0; font-size: 10px;">SELECT [COUNT/SUM/AVG/MIN/MAX], kolumna <br />
+FROM employees<br />
+GROUP BY kolumna</div><br />
+<h3> Wracając do naszych danych testowych i tabeli employees możemy się np dowiedzieć ilu pracowników wykonuje jakie zawody. Czyli ilu jest programistów, ilu managerów itp.<br />
+Można to wykonać jednym zapytaniem z grupowaniem<br />
+Podzbiory podzielimy na podstawie profesji, czyli JOB_ID i wykonamy dla każdego z nich funkcję zliczającą COUNT(1)<br />
+Gdy utworzymy podzbiory dla stanowiska to utworzy nam się tyle podzbiorów ile w danych jest unikalnych stanowisk.<br />
+</h3>
+<code>SELECT COUNT(1), JOB_ID
+FROM employees
+GROUP BY job_id;</code>
+<br />
+
+
+<h3>HAVING</h3>
+<h3>Instrukcji HAVING używamy gdy chcemy zwrócić informacje tylko z podzbiorów spełniających jakieś warunki, czyli np. takich gdzie średnia jest większa od jakieś wartości.<br />
+<div style="background: #F0F0F0; font-size: 10px;">
+SELECT AVG(kolumna), kolumnaGrupująca
+FROM tabela
+GROUP BY kolumnaGrupująca
+HAVING AVG(kolumna) > 10
+<div><br />
+</h3>
+<h3>Rzeczywistym problemem do rozwiązania jest np. zwrócenie departamentów w których pracuje więcej niż 10 osób.</h3>
+<code>SELECT DEPARTMENT_ID
+FROM employees
+GROUP BY DEPARTMENT_ID
+HAVING COUNT(1) > 10;
+</code>
+<br />
+<h4>Bardzo ważna UWAGA dotycząca zwracanych kolumn !!!</h4>
+<h3>W zwykłym zapytanie SQL, które nie posiada komendy GROUP BY możemy zwracać wszystkie kolumny dostępne w tabeli. 
+<code>SELECT FIRST_NAME, SALARY, JOB_ID
+FROM employees;
+</code>
+Możemy nawet użyć gwiazdki by zwrócić wszystkie kolumny.
+<code>SELECT *
+FROM employees;
+</code>
+</h3>
+<h3>Gdy jednak zdecydujemy się na użycie komendy GROUP BY to można zwrócić jedynie te kolumny, które służą do wyznaczenia podzbiorów, czyli te grupowane.<br />
+<code>SELECT JOB_ID
+FROM employees
+GROUP BY JOB_ID;
+</code>
+Gdy użyjemy kolumny, która nie jest grupowana dostaniemy błąd <font style="color:red">"not a GROUP BY expression"</font>. Jak dla zapytania poniżej.<br />
+<code>SELECT FIRST_NAME, JOB_ID
+FROM employees
+GROUP BY JOB_ID;
+</code>
+W zapytaniu powyżej próbujemy zwrócić kolumnę FIRST_NAME, ale nie można tego zrobić ponieważ nie jest ona grupowana!!!<br />
+</h3>
+
+<h3>Kolumny, które nie są grupowane nie mogą być zwracane bezpośrednio, ale można na nich wykonać funkcje analityczne i zwrócić ich wynik.<br />
+Można np. pogrupować pracowników według stanowiska, czyli:<br />
+<div style="background: #F0F0F0; font-size: 10px;">
+GROUP BY JOB_ID
+</div><br />
+<code>SELECT JOB_ID
+FROM employees
+GROUP BY JOB_ID;</code>
+oraz dla każdego stanowiska wyznaczyć średnie zarobki,czyli:<br />
+<div style="background: #F0F0F0; font-size: 10px;">
+SELECT AVG( SALARY )
+</div><br />
+Całe zapytanie będzie miało więc postać:<br />
+<code>SELECT JOB_ID, AVG( SALARY )
+FROM employees
+GROUP BY JOB_ID;</code>
+</h3>

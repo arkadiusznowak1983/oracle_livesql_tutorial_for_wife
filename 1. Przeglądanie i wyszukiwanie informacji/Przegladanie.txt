@@ -1,0 +1,33 @@
+<p><h2>Wyświetl dane z tabeli employees</h2></p>
+
+<ul>
+a) <strong>wszystkie dane z tabeli employees</strong>
+<li><p><strong>SELECT</strong> * <strong>FROM</strong> [nazwa tabeli];</p><br />
+<code>SELECT * FROM employees;</code><br />
+Po uruchomieniu zwróciło zawartość tabeli employees.<br />
+Składa się ona z poziomych wierszy i pionowych kolumn.<br />
+Każdy wiersz to jeden pracownik, który posiada informacje w kolumnach, np. email, first_name, itd<br />
+Gdy jako kolumny użyjemy <strong>*</strong> to wyświetlą się wszystkie kolumny w tabeli co jest przydatne gdy nie wiemy jakie kolumny ma tabela i chcemy się tego dowiedzieć
+</li>
+</ul>
+<br />
+<ul>
+b) <strong>imię i nazwisko z tabeli employees</strong>
+<li><p>SELECT <strong>kol1, kol2, ...</strong>FROM [nazwa tabeli];</p>
+Używając wcześniej gwiazdki <strong>*</strong> wiemy jakie tabela ma kolumny
+i wiemy, że imię to FIRST_NAME, a nazwisko to LAST_NAME<br />
+Kolumn używamy zastępując gwiazdkę <strong>*</strong> nazwami kolumn rozdzielonymi przecinkami<br />
+<code>SELECT FIRST_NAME, LAST_NAME FROM employees;</code>
+</li>
+</ul>
+
+<br /><br /><br />
+<ul>
+<b>ćwiczenia</b>
+<li>
+- wyświetl  nazwisko, mail i stanowisko wszystkich pracowników<br />
+- wyświetl  id departamentu, datę zatrudnienia i stanowisko wszystkich pracowników<br />
+</li>
+</ul>
+<br />
+<br />

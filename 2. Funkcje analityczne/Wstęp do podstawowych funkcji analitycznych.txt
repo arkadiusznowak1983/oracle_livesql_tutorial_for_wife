@@ -1,0 +1,11 @@
+ <h3>Testy wykonujemy na tabeli employyes</h3>
+<code>SELECT * FROM employees</code>
+ps. jeżeli wydzisz komunikat o braku tabeli kliknij przycisk "Execute Prerequisite SQL" znajdujący się powyżej.<br />
+<h4>Funkcje użyte w tym tutorialu</h4>
+<h3><b>COUNT(1)</b> - ilość wierszy</h3>
+<h3><b>COUNT(kolumna)</b> - ilość wierszy gdzie kolumna nie jest pusta</h3>
+<h3><b>COUNT(DISTINCT kolumna)</b> - ilość unikalnych wartości w kolumnie</h3>
+<h3><b>SUM(kolumna)</b> - suma wartości z kolumny</h3>
+<h3><b>MAX(kolumna)</b> - maksymalna wartość z kolumny</h3>
+<h3><b>MIN(kolumna)</b> - minimalna wartość komulny</h3>
+<h3><b>AVG(kolumna)</b> - średnia wartość w kolumnie</h3>

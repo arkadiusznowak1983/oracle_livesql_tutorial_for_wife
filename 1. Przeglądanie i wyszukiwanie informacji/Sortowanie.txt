@@ -1,0 +1,99 @@
+ <h2>Sortowanie wyników zapytania</h2>
+<h3>SELECT * FROM [tabelka] WHERE [filtr] [ORDER BY kolumna/y] [ASC|DESC]</h3>
+<br />
+<ul>
+a) <strong>wyświetl wszystkich pracowników alfabetycznie po nazwisku i imieniu</strong>
+<li>
+Co wiemy?<br />
+<font style="padding-left:10px;">- wyświetlamy wszystkie rekordy co oznacza, że nie ma filtrowania, czyli nie potrzebne jest słowo WHERE</font><br />
+<font style="padding-left:10px;">- nie określono jakie kolumny wyświetlić więc zakłądamy, że wszystkie, czyli *</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- sortujemy alfabetycznie po nazwisko i imieniu więc musimy określić nazwy tych kolumn</font><br />
+Wykonując zapytanie
+<code>select * from employees</code>
+dowiadujemy się, że imie to first_name a nazwisko to last_name<br />
+<br />
+Sortowanie wyników uzyskuje się poprzez dodanie <b>ORDER BY [kolumna]</b> na końcu zapytania. Jeżeli chcemy sortować po kilku kolumnach to wpisujemy je po przecinku, czyli <b>ORDER BY kolumna1, kolumna2</b><br />
+Nasze zapytanie będzie się więc składać z:<br />
+<font style="padding-left:10px;">- SELECT * FROM employees</font><br />
+<font style="padding-left:10px;">- brak słowa WHERE</font><br />
+<font style="padding-left:10px;">- instrukcja ORDER BY last_name, first_name</font><br />
+Czyli:<br />
+<code>SELECT * FROM employees ORDER BY last_name, first_name; </code>
+</li>
+</ul>
+<br />
+
+<ul>
+b) <strong>wyświetl wszystkich pracowników od najdłużej pracujących do najkrócej</strong>
+<li>
+Co wiemy?<br />
+<font style="padding-left:10px;">- wyświetlamy wszystkie rekordy co oznacza, że nie ma filtrowania, czyli nie potrzebne jest słowo WHERE</font><br />
+<font style="padding-left:10px;">- nie określono jakie kolumny wyświetlić więc zakłądamy, że wszystkie, czyli *</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- sortujemy po dacie zatrudnienia więc musimy określić nazwę tej kolumny, czyli hire_date</font><br />
+<font style="padding-left:10px;">- sortujemy od najdłuższego stażem do najkrótszego czyli w odwrotnej kolejności</font><br />
+Odwrotną kolejność uzyskujemy dodając na końcu instrukcji <b>ORDER BY kolumna</b> słowo <b>DESC</b>.<br />
+Dla przykładu, aby posortować po imieniu w odwrotnej kolejności to dodajemy <b>ORDER BY first_name DESC</b><br />
+Nasze zapytanie będzie się więc składać z:<br />
+<font style="padding-left:10px;">- SELECT * FROM employees</font><br />
+<font style="padding-left:10px;">- brak słowa WHERE</font><br />
+<font style="padding-left:10px;">- instrukcja sortowania odwróconego ORDER BY hire_date DESC</font><br />
+Czyli:<br />
+<code>SELECT * FROM employees ORDER BY hire_date DESC; </code>
+</li>
+</ul>
+<br />
+
+
+<ul>
+c) <strong>wyświetl wszystkich pracowników według departamentu rosnąco, a dla każdego departamentu w kolejności od największych zarobków do najmniejszych</strong>
+<li>
+Co wiemy?<br />
+<font style="padding-left:10px;">- wyświetlamy wszystkie rekordy co oznacza, że nie ma filtrowania, czyli nie potrzebne jest słowo WHERE</font><br />
+<font style="padding-left:10px;">- nie określono jakie kolumny wyświetlić więc zakłądamy, że wszystkie, czyli *</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- sortujemy po departamencie i zarobkach więc musimy określić nazw tych kolumn, czyli DEPARTMENT_ID i SALARY</font><br />
+<font style="padding-left:10px;">- sortujemy dla departamentu rosnąco, a dla zarobków malejąco, czyli <b>ORDER BY DEPARTMENT_ID, SALARY DESC</b></font><br />
+Jak widać dla kolumny SALARY użyto słowa <b>DESC</b> aby uzyskać efekt odwrotnego sortowania.<br />
+Nasze zapytanie będzie się więc składać z:<br />
+<font style="padding-left:10px;">- SELECT * FROM employees</font><br />
+<font style="padding-left:10px;">- brak słowa WHERE</font><br />
+<font style="padding-left:10px;">- instrukcja sortowania <b>ORDER BY DEPARTMENT_ID, SALARY DESC</b></font><br />
+Czyli:<br />
+<code>SELECT * FROM employees ORDER BY DEPARTMENT_ID, SALARY DESC; </code>
+</li>
+</ul>
+<br />
+
+<ul>
+d) <strong>wyświetl programistów w kolejności od najlepiej zarabiających do najgorzej</strong>
+<li>
+Co wiemy?<br />
+<font style="padding-left:10px;">- wyświetlamy programistów co oznacza, że jest filtrowanie po stanowisku, czyli <b>WHERE JOB_ID = 'IT_PROG'</b></font><br />
+<font style="padding-left:10px;">- nie określono jakie kolumny wyświetlić więc zakładamy, że wszystkie, czyli *</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- sortujemy po zarobkach więc musimy określić nazwę kolumny, czyli SALARY</font><br />
+<font style="padding-left:10px;">- sortujemy dla zarobków malejąco, czyli <b>ORDER BY SALARY DESC</b></font><br />
+Nasze zapytanie będzie się więc składać z:<br />
+<font style="padding-left:10px;">- SELECT * FROM employees</font><br />
+<font style="padding-left:10px;">- filtra WHERE JOB_ID = 'IT_PROG'</font><br />
+<font style="padding-left:10px;">- instrukcja sortowania <b>ORDER BY SALARY DESC</b></font><br />
+Czyli:<br />
+<code>SELECT * FROM employees WHERE JOB_ID = 'IT_PROG' ORDER BY SALARY DESC; </code>
+</li>
+</ul>
+<br />
+
+
+<ul>
+<strong>Ćwiczenie</strong>
+<li>
+<strong>Wyświetl pracowników w kolejności alfabetycznej będących bezpośrednimi podwładnymi managera o najwyższych zarobkach</strong><br />
+<font style="padding-left:10px;">- najpierw znajdź pracownika najlepiej zarabiającego i zapamiętaj jego EMPLOYEE_ID</font><br >
+<font style="padding-left:10px;">- następnie wyświetl w odpowiedniej kolejności pracowników, któych MANAGER_ID to zapamiętany EMPLOYEE_ID najlepiej zarabiającego</font><br />
+<br />
+Powodzenia
+</li>
+</ul>
+<br />

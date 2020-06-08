@@ -1,0 +1,91 @@
+<p><h2>Wybierz wiersze z tabeli employees</h2></p>
+<h3>SELECT * FROM [nazwa_tabeli] WHERE [kolumna = szukana_wartość]</h3>
+<br />
+<ul>
+a) <strong>wyświetl wszystkich pracowników o imieniu Alexander</strong>
+<li>
+SELECT [kolumny] FROM [nazwa_tabeli] <b>WHERE [kolumna = 'Alexander']</b><br />
+Zwróć uwagę, że szukane imię jest w pojedynczych cudzysłowiach <b>'</b>.<br />
+<b>Zawsze gdy ręcznie wprowadzamy znak lub jego ciąg to musi on być w pojedynczym cudzysłowiu.</b><br />
+Zasada ta nie tyczy się liczb i dat. Czyli np. do słowa Arek dodajemy cudzysłów by było 'Arek'.
+Ale gdy wprowadzamy liczbę np. 37 to  nic nie dodajemy i zostawiamy 37 .<br />
+Aby dane filtrować należy je najpierw wyświetlić. W bieżącym zadaniu mamy wyświetlić wszystkie kolumny tabeli employees, czyli użyjemy gwiazdki <font size="+1">*</font> , a dokładniej<br />
+<code>SELECT * FROM employees;</code>
+i dodamy na końcu <b>WHERE FIRST_NAME = 'Alexander'</b><br />
+W rezultacie otrzymamy: <br />
+<code>SELECT * FROM employees WHERE FIRST_NAME = 'Alexander';</code>
+</li>
+</ul>
+<br />
+
+<ul>
+b) <strong>wyświetl wszystkich pracowników z zarobkami większymi niż 5000</strong>
+<li>
+SELECT [kolumny] FROM [nazwa_tabeli] <b>WHERE [kolumna > 5000]</b><br />
+<b>Istnieją 3 podstawowe rodzaje porównywania danych: równa się(=), większe niż(>), i mniejsze niż(<)</b><br />
+Znaku równa się(=) można używać zawsze, ale większe(>) i mniejsze(<) stosujemy tylko na liczbach i datach.<br />
+W bieżącym przykładzie musimy dowiedzieć się jaką nazwę ma kolumna z zarobkami pracownika i jej użyć w warunku <b>WHERE kolumna > 5000</b><br />
+Wykonujemy zapytanie, które wyświetli zawartość tabeli employees
+<code>SELECT * FROM employees</code><br />
+Jak widać kolumna nazywa się SALARY. Filtr będzie wyglądać <b>WHERE SALARY> 5000</b><br />
+Gdy złożymy ze sobą podgląd tabeli i filtr to otrzymamy<br />
+<code>SELECT * FROM employees WHERE SALARY > 5000;</code>
+</li>
+</ul>
+
+<br />
+<ul>
+c) <strong>wyświetl wszystkich programistów z zarobkami większymi niż 5000</strong>
+<li>
+SELECT [kolumny] FROM [nazwa_tabeli] WHERE <b>[zarobki> 5000 AND profesja='programista']</b><br />
+Zapytanie SQL może zawierać wiele warunków filtrowania, np: <b>WHERE kolumna='filtr1' AND kolmna2 = 'filtr2'</b>.<br />
+Należy pamiętać, że powtarzamy tylko warunki. Słowo WHERE występuje tylko raz, niezależnie od ilości porównań.<br />
+Dodanie kolejnego warunku można wykonać na dwa sposoby: <br />
+- łącząc je za pomocą słowa AND co oznacza, że oba warunki muszą być spełnione by wiersz został wyświetlony<br />
+<code>SELECT * FROM employees WHERE SALARY > 5000 AND SALARY < 10000;</code>
+- łącząc je za pomocą słowa OR co oznacza, że wystarczy aby jeden z warunków został spełniony a wiersz zostanie wyświetlony<br />
+<code>SELECT * FROM employees WHERE FIRST_NAME = 'ALexander' OR SALARY > 15000;</code>
+<br />
+Aby rozwiązać bieżące zadanie należy dowiedzieć się:<br />
+- jak nazywa się kolumna z zarobkami<br />
+- jak nazywa się kolumna ze stanowiskiem<br />
+- jaka jest nazwa się stanowisko programisty<br />
+Wyświetlamy zawartość tabeli z danymi pracowników ( employee )<br />
+<code>SELECT * FROM employees;</code>
+Widzimy, że kolumny to: SALARY i JOB_ID.<br />
+Przeglądając zawartość kolumny JOB_ID widać, że stanowisko programisty to IT_PROG<br />.
+Tworzymy dwa filtry:<br />
+- SALARY > 5000<br />
+- JOB_ID = 'IT_PROG'<br />
+<b>Zwróć uwagę, że słowo IT_PROG jest w pojedynczym cudzysłowiu, czyli 'IT_PROG'</b><br />
+Wymogiem jest by zwrócić pracowników o stanowisku programista i zarobkach większych niż 5000<br />
+Warunkiem złączenia będzie w tym przypadku AND, czyli: <b>JOB_ID = 'IT_PROG' AND SALARY > 5000</b><br />
+Ostatecznie zapytanie przyjmuje wygląd:<br />
+<code>SELECT * FROM employees WHERE JOB_ID = 'IT_PROG' AND SALARY > 5000;</code>
+</li>
+</ul>
+<br />
+<ul>
+d) <strong>wyświetl imiona wszystkich programistów z zarobkami większymi niż 5000</strong>
+<li>
+SELECT [imie] FROM [nazwa_tabeli] WHERE <b>[zarobki> 5000 AND profesja='programista']</b><br />
+Wyświetlamy zawartość tabeli employees by określić nazwy kolumn imie, zarobki, stanowisko i nazwę stanowiska programisty<br />
+<code>SELECT * FROM employees ;</code>
+Kolumny to: FIRST_NAME, SALARY, JOB_ID i stanowisko 'IT_PROG'<br />
+Aby wyświetlić tylko imię to zamiast gwiazdki podajemy FIRST_NAME, czyli <b>SELECT FIRST_NAME FROM employees</b><br />
+Filtr będzie wyglądał: <b>JOB_ID = 'IT_PROG' AND SALARY > 5000</b><br />
+Całe zapytanie: <br />
+<code>SELECT FIRST_NAME FROM employees WHERE JOB_ID = 'IT_PROG' AND SALARY > 5000;</code>
+</li>
+</ul>
+
+<br />
+<br />
+<ul>
+<b>ćwiczenia</b>
+<li>
+- wyświetl pracowników, których przełożony ma id 100<br />
+- wyświetl pracowników, których przełożonym jest Neena Kochhar, a ich zarobki są wiksze niż 10000<br />
+mała podpowiedź: najpierw sprawdź jakie employee_id ma Neena Kochhar, a potem w drugim zapytaniu podstaw to id do manager_id w filtrze
+</li>
+</ul>

@@ -1,0 +1,89 @@
+<h2>Ograniczanie wyników zapytania: FETCH FIRST oraz DISTINCT</h2>
+<br />
+<ul>
+a) <strong>wyświetl pierwszych pięciu najlepiej zarabiających pracowników</strong>
+<li>
+Co wiemy?<br />
+<font style="padding-left:10px;">- nie określono jakie kolumny wyświetlić więc zakładamy, że wszystkie, czyli *</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- sortujemy po zarobkach więc musimy określić nazwę tej kolumny, czyli SALARY</font><br />
+<font style="padding-left:10px;">- sortujemy od największych zarobków do najmniejszych, czyli <b>ORDER BY SALARY DESC</b></font><br />
+<font style="padding-left:10px;">- wyświetlamy pierwsze pięć rekordów</font><br />
+Aby wyświetlić tylko określoną liczbę rekordów należy użyć instrukcji <b>FETCH FIRST [ilosc] ROW[S] ONLY</b> i umieścić go na samym końcu zapytania, nawet za ORDER BY. Dla przykładu tylko jeden rekord to: <b>FETCH FIRST 1 ROW ONLY</b><br />
+Aby wyświetlić pierwszych pięć rekordów będzie<b>FETCH FIRST 5 ROWS ONLY</b><br />
+Należy zwrócić uwagę, że dla jednego rekordu  piszemy ROW, a dla większej ilości ROWS<br />
+FETCH FIRST <b>1 ROW</b> ONLY<br />
+FETCH FIRST <b>2 ROWS</b> ONLY<br />
+FETCH FIRST <b>3 ROWS</b> ONLY<br />
+<br />
+Nasze zapytanie będzie się więc składać z:<br />
+<font style="padding-left:10px;">- SELECT * FROM employees</font><br />
+<font style="padding-left:10px;">- brak filtra WHERE</b></font><br />
+<font style="padding-left:10px;">- instrukcja sortowania od największych zarobków ORDER BY SALARY DESC</font><br />
+<font style="padding-left:10px;">- instrukcja ograniczania ilości wierszy, czyli FETCH FIRST 5 ROWS ONLY</font><br />
+
+Czyli:<br />
+<code>SELECT * FROM employees ORDER BY SALARY DESC FETCH FIRST 5 ROWS ONLY; </code>
+</li>
+</ul>
+<br />
+
+<ul>
+b) <strong>wyświetl unikalne nazwy stanowisk stanowisk przypisanych do pracowników</strong>
+<li>
+Co wiemy?<br />
+<font style="padding-left:10px;">- określono, że interesuje nas jedynie kolumna stanowiska, czyli JOB_ID</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- nie filtrujemy więc brak WHERE</font><br />
+<font style="padding-left:10px;">- nie sortujemy więc brak ORDER</font><br />
+<font style="padding-left:10px;">- wyświetlamy tylko unikalne nazwy stanowisk przypisanych do pracowników</font><br />
+Aby wyświetlić stanowiska należy użyć instrukcji SELECT JOB_ID. Wyświetlone zostanie wtedy stanowisko każdego pracownika. Co oznacza, że np. PROG_IT pojawi się tyle razy ilu jest programistów<br />
+Aby zwracane wartości były unikalne należy dodać słowo <b>DISTINCT</b> za słowem SELECT, a przed listą kolumn, czyli <b>SELECT DISTINCT kolumna1, kolumna2</b><br />
+W analizowanym przypadku instrukcja będzie miała postać: <b>SELECT DISTINCT JOB_ID</b><br />
+Nasze zapytanie będzie się więc składać z:<br />
+<font style="padding-left:10px;">- <b>SELECT DISTINCT JOB_ID FROM employees</b></font><br />
+<font style="padding-left:10px;">- brak filtra WHERE</b></font><br />
+<font style="padding-left:10px;">- brak instrukcji sortowania ORDER BY</font><br />
+Czyli:<br />
+<code>SELECT DISTINCT JOB_ID FROM employees; </code>
+</li>
+</ul>
+<br />
+
+<ul>
+c) <strong>wyświetl trzy najwyższe stawki zarobków wśród programistów</strong>
+<li>
+Co wiemy?<br />
+<font style="padding-left:10px;">- określono, że interesuje nas jedynie kolumna zarobki, czyli SALARY</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- filtrujemy po stanowisku, czyli WHERE JOB_ID = 'IT_PROG'</font><br />
+<font style="padding-left:10px;">- sortujemy od największych zarobków, czyli ORDER BY SALARY DESC</font><br />
+<font style="padding-left:10px;">- wyświetlamy trzy najwyższe <b>unikalne</b>kwoty przypisane do programistów, czyli SELECT DISTINCT SALARY</font><br />
+<font style="padding-left:10px;">- wyświetlamy tylko trzy najwyższe kwoty przypisane do programistów, czyli ograniczenie FETCH FIRST 3 ROWS ONLY</font><br />
+Nasze zapytanie będzie się więc składać z:<br />
+<font style="padding-left:10px;">- <b>SELECT DISTINCT SALARY FROM employees</b></font><br />
+<font style="padding-left:10px;">- filtr <b>WHERE JOB_ID = 'IT_PROG'</b></font><br />
+<font style="padding-left:10px;">- instrukcja sortowania od największej wartości <b>ORDER BY SALARY DESC</b></font><br />
+<font style="padding-left:10px;">- ograniczenie <b>FETCH FIRST 3 ROWS ONLY</b></font><br />
+Czyli:<br />
+<code>SELECT DISTINCT SALARY FROM employees WHERE JOB_ID = 'IT_PROG' ORDER BY SALARY DESC FETCH FIRST 3 ROWS ONLY; </code>
+</li>
+</ul>
+<br />
+
+
+<ul>
+<strong>Ćwiczenie</strong>
+<li>
+<strong>Wyświetl listę unikalnych imion wszystkich pracowników w kolejności alfabetycznej.</strong>
+</li>
+</ul>
+<br />
+
+<ul>
+<strong>Ćwiczenie</strong>
+<li>
+<strong>znajdź pracownika o najkrótszym stażu pracy</strong>
+</li>
+</ul>
+<br />

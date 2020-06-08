@@ -1,0 +1,43 @@
+ <h2><b>SUM</b> - sumowanie wartości numerycznych w kolumnie </h2>
+Funkcję SUM można stosować jedynie na kolumnach zawierających liczny.<br />
+<strong>SELECT SUM(kolumna) FROM employees;</strong><br />
+<ul>
+<h3>Do sumowania wartości numerycznych z kolumny służy funkcja SUM, którą wstawiamy w sekcji SELECT</h3>
+Poniżej przykład sumujący miesięczne zarobki wszystkich pracowników.
+<code>SELECT SUM(SALARY)FROM employees;</code>
+<br />
+<h3>Przykłady użycia funkcji SUM</h3>
+<li>
+a) <strong>Policz ile wynosi suma zarobków pracowników departamentu o DEPARTMENT_ID = 90</strong><br />
+Co wiemy?<br />
+<font style="padding-left:10px;">- nie interesują nas kolumny opisujące pracownika tylko suma zarobków, czyli SELECT SUM(SALARY)</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- wyświetlamy tylko tych z departamentu 90, czyli dodajemy WHERE DEPARTMENT_ID = 90</font><br /><br />
+<strong>Nasze zapytanie będzie się więc składać z:</strong><br />
+<font style="padding-left:10px;">- SELECT SUM(SALARY) FROM employees</font><br />
+<font style="padding-left:10px;">- DEPARTMENT_ID = 90</font><br /><br />
+<code>SELECT SUM(SALARY) FROM employees WHERE DEPARTMENT_ID = 90;</code>
+</li>
+
+<li>
+b) <strong>Policz ile wynosi suma zarobków programistów z departamentu o DEPARTMENT_ID = 60</strong><br />
+Co wiemy?<br />
+<font style="padding-left:10px;">- nie interesują nas kolumny opisujące pracownika tylko suma zarobków, czyli SELECT SUM(SALARY)</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- wyświetlamy tylko programistów (JOB_ID = 'IT_PROG') z departamentu 50, czyli dodajemy WHERE JOB_ID = 'IT_PROG' AND DEPARTMENT_ID = 60</font><br /><br />
+<strong>Nasze zapytanie będzie się więc składać z:</strong><br />
+<font style="padding-left:10px;">- SELECT SUM(SALARY) FROM employees</font><br />
+<font style="padding-left:10px;">- JOB_ID = 'IT_PROG' AND DEPARTMENT_ID = 60</font><br /><br />
+<code>SELECT SUM(SALARY) FROM employees WHERE  JOB_ID = 'IT_PROG' AND DEPARTMENT_ID = 60;</code>
+<br />
+</li>
+</ul>
+
+
+<ul>
+<strong>Ćwiczenie</strong>
+<li>
+<strong>- Ile razem  zarabiają wszyscy dyrektorzy (job_id = 'AD_VP') ?</strong>
+</li>
+</ul>
+<br />

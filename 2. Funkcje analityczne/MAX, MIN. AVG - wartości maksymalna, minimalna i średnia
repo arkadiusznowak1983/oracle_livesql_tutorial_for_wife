@@ -1,0 +1,56 @@
+<h2><b>MAX, MIN. AVG</b> - wartości maksymalna, minimalna i średnia z kolumny</h2>
+<br />
+<br />
+<h2> MAX, MIN, AVG dodajemy w sekcji SELECT</h2>
+<h3> - funkcja MAX zwraca maksymalną wartość w kolumnie</h3>
+<strong>SELECT MAX(kolumna) FROM employees;</strong>
+<h3> - funkcja MIN zwraca minimalną wartość w kolumnie</h3>
+<strong>SELECT MIN(kolumna) FROM employees;</strong>
+<h3> - funkcja AVG zwraca średnią arytmetyczną z kolumny</h3>
+<strong>SELECT AVG(kolumna) FROM employees;</strong>
+<br />
+<h3> - MAX, MIN, AVG mogą występować jednocześnie</h3>
+<strong>SELECT MAX(kolumna) ,MIN(kolumna) ,AVG(kolumna) FROM employees;</strong>
+<br />
+
+<ul>
+<h3>Do  znajdowania wartości maksymalnej, minimalnej i średniej z kolumny używamy MAX, MIN, AVG</h3>
+Poniżej przykład zwracający maksymalną pensję.
+<code>SELECT MAX(SALARY)FROM employees;</code>
+<br />
+<h3>Przykłady użycia funkcji MAX, MIN, AVG</h3>
+<li>
+a) <strong>Policz ile wynosi średnia zarobków pracowników departamentu o DEPARTMENT_ID = 90</strong><br />
+Co wiemy?<br />
+<font style="padding-left:10px;">- nie interesują nas kolumny opisujące pracownika tylko średnia zarobków, czyli SELECT AVG(SALARY)</font><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- wyświetlamy tylko tych z departamentu 90, czyli dodajemy WHERE DEPARTMENT_ID = 90</font><br /><br />
+<strong>Nasze zapytanie będzie się więc składać z:</strong><br />
+<font style="padding-left:10px;">- SELECT AVG(SALARY) FROM employees</font><br />
+<font style="padding-left:10px;">- DEPARTMENT_ID = 90</font><br /><br />
+<code>SELECT AVG(SALARY) FROM employees WHERE DEPARTMENT_ID = 90;</code>
+</li>
+
+<li>
+b) <strong>Policz ile wynosi minimalna i maksymalna pensja programistów z departamentu o DEPARTMENT_ID = 60</strong><br />
+Co wiemy?<br />
+<font style="padding-left:10px;">- nie interesują nas kolumny opisujące pracownika tylko maksymalne i minimalne zarobki, czyli SELECT MIN(SALARY), MAX(SALARY)</font><br />
+<b>Zwróć uwagę na przecinek między funkcjami.</b><br />
+<font style="padding-left:10px;">- tabela pracowników to employees</font><br />
+<font style="padding-left:10px;">- wyświetlamy tylko programistów (JOB_ID = 'IT_PROG') z departamentu 50, czyli dodajemy WHERE JOB_ID = 'IT_PROG' AND DEPARTMENT_ID = 60</font><br /><br />
+<strong>Nasze zapytanie będzie się więc składać z:</strong><br />
+<font style="padding-left:10px;">- SELECT MIN(SALARY), MAX(SALARY) FROM employees</font><br />
+<font style="padding-left:10px;">- WHERE JOB_ID = 'IT_PROG' AND DEPARTMENT_ID = 60</font><br /><br />
+<code>SELECT MIN(SALARY), MAX(SALARY) FROM employees WHERE  JOB_ID = 'IT_PROG' AND DEPARTMENT_ID = 60;</code>
+<br />
+</li>
+</ul>
+
+
+<ul>
+<strong>Ćwiczenie</strong>
+<li>
+<strong>- Ile wynosi minimalne wynagrodzenie w firmie ?</strong>
+</li>
+</ul>
+<br />
